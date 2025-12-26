@@ -3,7 +3,7 @@ import express from "express";
 
 // Constants
 const isProduction = process.env.NODE_ENV === "production";
-const port = process.env.PORT || 5173;
+// const port = process.env.PORT || 5173;
 const base = "/";
 
 // Cached production assets
@@ -12,7 +12,7 @@ const templateHtml = isProduction
   : "";
 
 // Create http server
-const app = express();
+export const app = express();
 
 // Add Vite or respective production middlewares
 /** @type {import('vite').ViteDevServer | undefined} */
@@ -66,6 +66,6 @@ app.use("", async (req, res) => {
 });
 
 // Start http server
-app.listen(port, () => {
+/* app.listen(port, () => {
   console.log(`Server started at http://localhost:${port}`);
-});
+}); */
