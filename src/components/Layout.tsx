@@ -11,7 +11,7 @@ const Layout: React.FC = () => {
           {/* Padding bottom for sticky audio player */}
           <Outlet />
         </div>
-        <AudioPlayer src="/audio-guide.m4a" />
+        <AudioPlayer src="/Presepe_2025_audio.m4a" />
       </main>
     </div>
   );

@@ -1,35 +1,124 @@
 import React from "react";
+import { narrativeContent } from "../constants";
 
 const Home: React.FC = () => {
   return (
-    <div className="px-6 py-8 s-prose">
-      <header className="mb-8 text-center">
-        <h1 className="text-3xl font-bold text-[var(--color-text-primary)] mb-2 tracking-tight">
-          Presepe di San Rocco
-        </h1>
-        <p className="text-[var(--color-text-primary)] opacity-80 text-lg italic">
-          26 Dicembre 2024
-        </p>
-      </header>
+    <div className="px-6 py-8 pb-32 max-w-lg mx-auto">
+      {narrativeContent.map((block, index) => {
+        switch (block.type) {
+          case "main-title":
+            return (
+              <header key={index} className="mb-10 text-center animate-fade-in">
+                <h1 className="text-4xl font-bold text-[var(--color-text-primary)] mb-3 tracking-tight leading-tight">
+                  {block.content}
+                  <br />
+                  {block.subContent}
+                </h1>
+                <div className="w-16 h-2 bg-[var(--color-accent-end)] mx-auto rounded-full" />
+              </header>
+            );
 
-      <article className="space-y-6 text-xl leading-relaxed text-[var(--color-text-primary)] opacity-90">
-        <p>
-          Benvenuti al Presepe Vivente di San Rocco. Vi invitiamo a immergervi
-          in questa rappresentazione sacra, dove la tradizione incontra la fede
-          in un'atmosfera di pace e serenità.
-        </p>
-        <p>
-          Mentre camminate attraverso le scene, ascoltate la guida audio che vi
-          accompagnerà in questo viaggio spirituale, raccontandovi la storia
-          della Natività come non l'avete mai sentita.
-        </p>
-        {/* Placeholder for more content */}
-        <div className="h-32 flex items-center justify-center border-2 border-dashed border-[var(--color-accent-end)] rounded-xl bg-white/30">
-          <span className="text-sm opacity-50">Contenuto Narrativo...</span>
-        </div>
-      </article>
+          case "intro":
+            return (
+              <p
+                key={index}
+                className="text-xl font-medium leading-relaxed text-[var(--color-text-primary)] mb-8"
+              >
+                {block.content}
+              </p>
+            );
 
-      {/* Audio Player placeholder will be injected via Layout or placed here later */}
+          case "chapter":
+            return (
+              <section key={index} className="mb-10">
+                <h2 className="text-2xl font-semibold text-[var(--color-text-primary)] mb-3 relative pl-4 border-l-4 border-[var(--color-accent-end)]">
+                  {block.title || ""}
+                </h2>
+                <p className="text-xl font-medium leading-relaxed text-[var(--color-text-primary)]">
+                  {block.content}
+                </p>
+              </section>
+            );
+
+          case "transition":
+            return (
+              <p
+                key={index}
+                className="text-xl font-medium leading-relaxed text-[var(--color-text-primary)] mb-8 italic"
+              >
+                {block.content}
+              </p>
+            );
+
+          case "quote":
+            return (
+              <figure
+                key={index}
+                className="mb-10 p-6 bg-white/60 rounded-xl shadow-sm border border-[var(--color-accent-start)]"
+              >
+                <blockquote className="text-xl font-medium italic text-[var(--color-text-primary)] mb-4 relative">
+                  <span className="absolute -top-5 -left-2 text-5xl text-[var(--color-accent-end)] opacity-70">
+                    "
+                  </span>
+                  <span className="relative z-10">{block.content}</span>
+                </blockquote>
+                {block.author && (
+                  <figcaption className="text-right text-sm font-semibold opacity-70">
+                    — {block.author}
+                  </figcaption>
+                )}
+              </figure>
+            );
+
+          case "prayer":
+            return (
+              <div
+                key={index}
+                className="mb-12 text-center py-8 px-6 bg-gradient-to-b from-[var(--color-accent-start)]/30 to-transparent rounded-2xl mx-2"
+              >
+                <h3 className="text-base uppercase tracking-widest opacity-60 mb-4 font-bold">
+                  Preghiera
+                </h3>
+                <p className="whitespace-pre-line text-2xl font-medium font-serif leading-loose text-[var(--color-text-primary)]">
+                  {block.content}
+                </p>
+              </div>
+            );
+
+          case "reflection":
+            return (
+              <section
+                key={index}
+                className="mb-12 p-6 bg-[var(--color-bg-primary)] text-[var(--color-text-primary)] border border-[var(--color-text-primary)]/80 rounded-xl shadow-lg"
+              >
+                <h3 className="text-2xl font-bold mb-4 border-b border-[var(--color-text-primary)]/80 pb-2">
+                  {block.title || "Riflessione"}
+                </h3>
+                <p className="text-xl leading-relaxed whitespace-pre-line font-medium opacity-95">
+                  {block.content}
+                </p>
+              </section>
+            );
+
+          case "outro":
+            return (
+              <footer
+                key={index}
+                className="mt-12 text-center p-8 bg-[var(--color-bg-primary)] text-[var(--color-text-primary)] border border-[var(--color-text-primary)]/80 rounded-2xl shadow-lg mb-6"
+              >
+                <div key="icon" className="text-4xl mb-3">
+                  🎁
+                </div>
+                <p className="text-xl font-medium text-[var(--color-text-primary)]">
+                  {block.content}
+                </p>
+              </footer>
+            );
+
+          default:
+            return null;
+        }
+      })}
     </div>
   );
 };
