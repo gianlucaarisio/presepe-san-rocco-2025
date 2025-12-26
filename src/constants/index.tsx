@@ -1,12 +1,18 @@
+import React from "react";
+
 export type ContentBlock =
-  | { type: "main-title"; content: string; subContent?: string }
-  | { type: "intro"; content: string }
-  | { type: "chapter"; title: string; content: string }
-  | { type: "transition"; content: string }
-  | { type: "quote"; content: string; author?: string }
-  | { type: "prayer"; content: string }
-  | { type: "reflection"; title: string; content: string }
-  | { type: "outro"; content: string };
+  | {
+      type: "main-title";
+      content: React.ReactNode;
+      subContent?: React.ReactNode;
+    }
+  | { type: "intro"; content: React.ReactNode }
+  | { type: "chapter"; title: string; content: React.ReactNode }
+  | { type: "transition"; content: React.ReactNode }
+  | { type: "quote"; content: React.ReactNode; author?: string }
+  | { type: "prayer"; content: React.ReactNode }
+  | { type: "reflection"; title: string; content: React.ReactNode }
+  | { type: "outro"; content: React.ReactNode };
 
 export const narrativeContent: ContentBlock[] = [
   {
