@@ -1,16 +1,19 @@
 import React from "react";
-import Header from "./Header";
+import { Outlet } from "react-router-dom";
+import AudioPlayer from "./AudioPlayer";
 
-interface LayoutProps {
-  children: React.ReactNode;
-}
-
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+const Layout: React.FC = () => {
   return (
-    <>
-      <Header />
-      <main>{children}</main>
-    </>
+    <div className="min-h-screen bg-[var(--color-bg-primary)] text-[var(--color-text-primary)] font-sans antialiased">
+      <main className="mx-auto max-w-md min-h-screen relative shadow-2xl bg-white/50 backdrop-blur-sm">
+        <div className="min-h-full pb-32">
+          {" "}
+          {/* Padding bottom for sticky audio player */}
+          <Outlet />
+        </div>
+        <AudioPlayer src="/audio-guide.m4a" />
+      </main>
+    </div>
   );
 };
 
