@@ -104,7 +104,7 @@ const Home: React.FC = () => {
             return (
               <footer
                 key={index}
-                className="mt-12 text-center p-8 bg-[var(--color-bg-primary)] text-[var(--color-text-primary)] border border-[var(--color-text-primary)]/80 rounded-2xl shadow-lg mb-6"
+                className="mt-12 text-center p-8 bg-[var(--color-bg-primary)] text-[var(--color-text-primary)] border border-[var(--color-text-primary)]/80 rounded-2xl shadow-lg"
               >
                 <div key="icon" className="text-4xl mb-3">
                   🎁
